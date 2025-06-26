@@ -59,7 +59,6 @@ npm run build
 
 
 
-git clone https://github.com/your-username/event-calendar.git
-cd event-calendar
+
 
 
