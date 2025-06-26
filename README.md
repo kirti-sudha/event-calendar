@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# 📅 Custom Event Calendar
 
-## Project info
+An interactive and dynamic **Event Calendar** application built using ReactJS. This calendar allows users to manage their schedules efficiently by adding, editing, deleting, and viewing events. It also supports advanced features like recurring events, drag-and-drop rescheduling, and local persistence.
 
-**URL**: https://lovable.dev/projects/b57274c2-de6f-451b-8298-39ea3501b03c
+---
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### ✅ Monthly View
+- Traditional calendar view
+- Highlight for the current day
+- Navigation between months
 
-**Use Lovable**
+### ✅ Event Management
+- Add events with:
+  - Title
+  - Date & Time picker
+  - Description
+  - Recurrence options (Daily, Weekly, Monthly, Custom)
+  - Color/category (optional)
+- Edit existing events
+- Delete events
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b57274c2-de6f-451b-8298-39ea3501b03c) and start prompting.
+### ✅ Recurring Events
+- Daily, Weekly, Monthly, and Custom recurrence logic
+- Proper expansion and display across the calendar view
 
-Changes made via Lovable will be committed automatically to this repo.
+### ✅ Drag-and-Drop Rescheduling
+- Easily reschedule events by dragging them to a different day
+- Automatically handles updates to dates and potential conflicts
 
-**Use your preferred IDE**
+### ✅ Conflict Management
+- Detects and warns about overlapping events
+- Prevents accidental scheduling of clashing events
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### ✅ Event Filtering & Search (Optional)
+- Search events by title or description
+- Filter events by category or date (if implemented)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### ✅ Event Persistence
+- Uses **LocalStorage** or **IndexedDB** to persist events across sessions
 
-Follow these steps:
+### ✅ Responsive Design (Optional)
+- Mobile-friendly layout with potential weekly/daily views
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+---
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## 💻 Tech Stack
 
-# Step 3: Install the necessary dependencies.
-npm i
+- **Frontend:** ReactJS, TailwindCSS (or CSS/SCSS)
+- **Calendar UI:** `react-big-calendar` or custom layout
+- **Date Handling:** `date-fns` or `moment.js`
+- **Drag-and-Drop:** `react-dnd` or `react-beautiful-dnd`
+- **State Management:** React Context, useReducer, or Redux (depending on complexity)
+- **Persistence:** LocalStorage / IndexedDB / Supabase (optional)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+---
 
-**Edit a file directly in GitHub**
+## 🧠 How It Works
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Users can click on a calendar date to add an event.
+2. A modal form collects event details including recurrence.
+3. Events are rendered on the monthly view.
+4. Recurring events are expanded and rendered accordingly.
+5. Users can drag and drop events to reschedule them.
+6. Changes are saved in the local database to persist across refreshes.
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📦 Getting Started
 
-## What technologies are used for this project?
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/event-calendar.git
+cd event-calendar
 
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/b57274c2-de6f-451b-8298-39ea3501b03c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
