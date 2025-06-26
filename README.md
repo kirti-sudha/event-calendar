@@ -1,73 +1,76 @@
-# Welcome to your Lovable project
+# Custom Event Calendar
 
-## Project info
+A modern, feature-rich calendar application built with React, TypeScript, Vite, Tailwind CSS, and shadcn-ui.
 
-**URL**: https://lovable.dev/projects/b57274c2-de6f-451b-8298-39ea3501b03c
+## Features
+- Add, edit, and delete events
+- Support for recurring events (daily, weekly, monthly)
+- View events in a monthly grid or list
+- Drag-and-drop event rescheduling
+- Color-coded events and categories
+- Responsive and mobile-friendly UI
 
-## How can I edit this code?
+## Recurring Events
+- Create events that repeat daily, weekly, or monthly
+- Recurring events are visible in all future months according to their pattern
+- (Advanced) Support for deleting or updating individual instances of recurring events (with code modifications)
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm (v9+ recommended)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b57274c2-de6f-451b-8298-39ea3501b03c) and start prompting.
+### Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/iamKirtix/custom-event-calendar1.git
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd custom-event-calendar1/custom-event-calendar1
+   ```
+3. Install dependencies:
+   ```sh
+   npm install
+   ```
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+### Running the App
+Start the development server:
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
+The app will be available at [http://localhost:8080](http://localhost:8080) (or the port shown in your terminal).
 
-**Edit a file directly in GitHub**
+### Building for Production
+```sh
+npm run build
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Linting
+```sh
+npm run lint
+```
 
-**Use GitHub Codespaces**
+## Project Structure
+- `src/` — Main source code (components, hooks, types)
+- `public/` — Static assets (e.g., favicon, images)
+- `index.html` — Main HTML file
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Technologies Used
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
 
-## What technologies are used for this project?
+## Customization
+- You can easily extend the calendar to support more recurrence rules, custom views, or integrations.
+- To change the favicon, replace `public/image.png` and update the `<link rel="icon">` in `index.html`.
 
-This project is built with:
+## License
+MIT
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/b57274c2-de6f-451b-8298-39ea3501b03c) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+For questions or contributions, please open an issue or pull request on [GitHub](https://github.com/iamKirtix/custom-event-calendar1).
