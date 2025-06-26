@@ -72,6 +72,55 @@ export const useCalendarEvents = () => {
     return recurringEvents;
   };
 
+  const generateRecurringInstancesInRange = (event: Event, rangeStart: Date, rangeEnd: Date): Event[] => {
+    if (!event.isRecurring || !event.recurrence) return [];
+    const { type, frequency, endDate, endAfterOccurrences } = event.recurrence;
+    const startDate = parseISO(event.startDate);
+    let currentDate = startDate;
+    let occurrenceCount = 1;
+    const instances: Event[] = [];
+    while (true) {
+      if (
+        (isAfter(currentDate, rangeEnd)) ||
+        (endDate && isAfter(currentDate, parseISO(endDate))) ||
+        (endAfterOccurrences && occurrenceCount > endAfterOccurrences)
+      ) {
+        break;
+      }
+      const dateStr = format(currentDate, 'yyyy-MM-dd');
+      // Skip if this date is in recurrenceExceptions
+      if (!event.recurrenceExceptions || !event.recurrenceExceptions.includes(dateStr)) {
+        let instance: Event = {
+          ...event,
+          id: `${event.id}-recurring-${occurrenceCount}`,
+          startDate: dateStr,
+          endDate: dateStr,
+          parentEventId: event.id,
+        };
+        // Apply modifications if present
+        if (event.recurrenceModifications && event.recurrenceModifications[dateStr]) {
+          instance = { ...instance, ...event.recurrenceModifications[dateStr] };
+        }
+        instances.push(instance);
+      }
+      switch (type) {
+        case 'daily':
+          currentDate = addDays(currentDate, frequency);
+          break;
+        case 'weekly':
+          currentDate = addWeeks(currentDate, frequency);
+          break;
+        case 'monthly':
+          currentDate = addMonths(currentDate, frequency);
+          break;
+        default:
+          return instances;
+      }
+      occurrenceCount++;
+    }
+    return instances;
+  };
+
   const addEvent = (eventData: EventFormData) => {
     const newEvent: Event = {
       id: Date.now().toString(),
@@ -85,21 +134,51 @@ export const useCalendarEvents = () => {
     setEvents(prev => [...prev, ...eventsToAdd]);
   };
 
-  const updateEvent = (eventId: string, eventData: EventFormData) => {
-    setEvents(prev => prev.map(event => 
-      event.id === eventId 
-        ? { ...event, ...eventData }
-        : event
-    ));
+  const updateEvent = (eventId: string, eventData: EventFormData, instanceDate?: string) => {
+    setEvents(prev => {
+      const eventToUpdate = prev.find(e => e.id === eventId);
+      // If updating a single instance of a recurring event
+      if (instanceDate && eventToUpdate && eventToUpdate.isRecurring) {
+        return prev.map(e =>
+          e.id === eventId
+            ? {
+                ...e,
+                recurrenceModifications: {
+                  ...(e.recurrenceModifications || {}),
+                  [instanceDate]: eventData,
+                },
+              }
+            : e
+        );
+      }
+      // If updating a base event or non-recurring event
+      return prev.map(event =>
+        event.id === eventId
+          ? { ...event, ...eventData }
+          : event
+      );
+    });
   };
 
-  const deleteEvent = (eventId: string) => {
+  const deleteEvent = (eventId: string, instanceDate?: string) => {
     setEvents(prev => {
       const eventToDelete = prev.find(e => e.id === eventId);
-      if (eventToDelete?.parentEventId) {
-        // Delete all recurring instances
-        return prev.filter(e => e.parentEventId !== eventToDelete.parentEventId && e.id !== eventToDelete.parentEventId);
+      // If deleting a single instance of a recurring event
+      if (instanceDate && eventToDelete && eventToDelete.isRecurring) {
+        // Add the date to recurrenceExceptions
+        return prev.map(e =>
+          e.id === eventId
+            ? {
+                ...e,
+                recurrenceExceptions: [
+                  ...(e.recurrenceExceptions || []),
+                  instanceDate,
+                ],
+              }
+            : e
+        );
       }
+      // If deleting a base event or non-recurring event
       return prev.filter(e => e.id !== eventId);
     });
   };

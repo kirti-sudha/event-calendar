@@ -1,4 +1,3 @@
-
 export interface Event {
   id: string;
   title: string;
@@ -12,6 +11,8 @@ export interface Event {
   recurrence?: RecurrencePattern;
   isRecurring: boolean;
   parentEventId?: string;
+  recurrenceExceptions?: string[];
+  recurrenceModifications?: { [date: string]: Partial<Event> };
 }
 
 export interface RecurrencePattern {
