@@ -12,7 +12,7 @@ A modern, feature-rich calendar application built with React, TypeScript, Vite, 
 - Responsive and mobile-friendly UI
 
 ## Recurring Events
-- Create events that repeat daily, weekly, or monthly
+- Events that repeat daily, weekly, or monthly
 - Recurring events are visible in all future months according to their pattern
 - (Advanced) Support for deleting or updating individual instances of recurring events (with code modifications)
 
